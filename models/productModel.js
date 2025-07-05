@@ -28,7 +28,7 @@ var product = {
     addProduct: function (req, callback) {
   
       
-        pool.query("INSERT INTO product (name,description_product,price,category_id,brand_id,material,weight,stock_quantity,image_url) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)", [req.name,req.description_product,req.price,req.category_id,req.brand_id,req.material,req.weight,req.stock_quantity,req.image_url], function (err, result) {
+        pool.query("INSERT INTO product (name,description_product,price,category_id,brand_id,ingredients,skin_type,usage,image_url,benefits,suitable_for,formulation, expiration_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)", [req.name,req.description_product,req.price,req.category_id,req.brand_id,req.ingredients,req.skin_type,req.usage,req.image_url,req.benefits,req.suitable_for,req.formulation, req.expiration_date], function (err, result) {
             // console.log(err,result );
             //    console.log(req,"req" );
             response={
@@ -75,9 +75,9 @@ var product = {
 
     },
     updateProduct: function (req, callback) {
-        const { name,description_product,price,category_id,brand_id,material,weight,stock_quantity,image_url} = req.body;
+        const { name,description_product,price,category_id,brand_id,ingredients,skin_type,usage,image_url,benefits, suitable_for,formulation,expiration_date} = req.body;
         const{id}=req.params;
-        pool.query("UPDATE product SET name=$1,description_product=$2,price=$3, category_id=$4, brand_id=$5, material=$6,weight=$7, stock_quantity=$8,image_url=$9 WHERE id =$10", [name,description_product,price,category_id,brand_id,material,weight,stock_quantity,image_url, id], function (err, result) {
+        pool.query("UPDATE product SET name=$1,description_product=$2,price=$3, category_id=$4, brand_id=$5, ingredients=$6,skin_type=$7, usage=$8,image_url=$9,benefits=$10,suitable_for=$11,formulation=$12, expiration_date=$13 WHERE id =$14", [name,description_product,price,category_id,brand_id,ingredients,skin_type,usage,image_url,benefits, suitable_for,formulation,expiration_date, id], function (err, result) {
             //console.log(err,"update");
             
             response={
